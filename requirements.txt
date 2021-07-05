@@ -1,0 +1,23 @@
+asgiref==3.3.4
+certifi==2021.5.30
+chardet==4.0.0
+defusedxml==0.7.1
+Django==3.2.4
+django-cors-headers==3.7.0
+grab==0.6.41
+idna==2.10
+lxml @ file:///D:/Myprojects/wildberries/lxml-4.6.3-cp39-cp39-win_amd64.whl
+Pillow==8.2.0
+pycurl @ file:///D:/Myprojects/wildberries/pycurl-7.43.0.5-cp39-cp39-win_amd64.whl
+python-resize-image==1.1.19
+pytils==0.3
+pytz==2021.1
+requests==2.25.1
+selection==0.0.14
+selenium==3.141.0
+six==1.16.0
+sqlparse==0.4.1
+urllib3==1.26.5
+user-agent==0.1.9
+vk-api==11.9.4
+weblib==0.1.30
