@@ -1,0 +1,123 @@
+$dark: #001a34;
+$blue: #005bff;
+$red: #f91155;
+$green: #74af18;
+$grey: rgb(128, 147, 170);
+$shadow: 0 1px 3px rgba($dark, 0.15);
+$font-base: 'GT Eesti Pro', sans-serif;
+$font-size-base: 17px;
+$font-size-lg: $font-size-base + 2;
+
+@mixin transition{ transition: .2s ease; -webkit-transition: .2s ease; -moz-transition: .2s ease; }
+
+body{
+	background: rgba($dark, 0.05);
+	color: $dark;
+	font: 400 #{$font-size-base}/1.65 $font-base;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+}
+.fade-enter-active, .fade-leave-active { transition: opacity 0.5s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+.flip-list-move { transition: transform 0.8s ease; }
+.list-complete-item { transition: all 0.8s ease; display: inline-block; margin-right: 10px; }
+.list-complete-enter-from, .list-complete-leave-to { opacity: 0; transform: translateY(30px); }
+.list-complete-leave-active { position: absolute; }
+
+.page{
+	max-width: 768px;
+	width: 100%;
+	margin: 0 auto;
+	.red{ color: $red; }
+	.green { color: $green; }
+	.grey{ color: $grey;}
+	.hide{
+		&.bages{ display: none; }
+	}
+	.button{
+		font-size: 15px; line-height: 32px;
+		border: none; text-decoration: none;
+	    background-color: $blue; color: #fff;
+	    height: 32px; padding: 0 15px; border-radius: 3px;
+		display: block; white-space: nowrap;
+		&.bg-red{ background: $red; }
+		&.small{ font-size: 13px; line-height: 26px; height: 26px; }
+	}
+	.items{
+		@include transition;
+		.title{ font-size: 22px; }
+		&--item{
+			background: #fff;
+			border-radius: 3px;
+            box-shadow: $shadow;
+			position: relative;
+			@include transition;
+			min-height: 110px;
+			&--image{
+				width: 60px;
+			    height: 60px;
+			    background-size: cover;
+			    background-position: center;
+				border-radius: 3px;
+			}
+			h3{ font-size: $font-size-base; }
+			&--price{
+				font: 400 24px/1 $font-base;
+				.grey{ font-size: 13px; font-weight: 400; white-space: nowrap; }
+			}
+			&--prices, .bages{
+				font-size: $font-size-base - 2;
+			}
+			.items--item--prices--chart {
+			    height: 20px;
+			    position: relative;
+				.chart-item {
+					@include transition;
+					cursor: pointer;
+					opacity: .5;
+				    width: 4px;
+				    margin-right: 3px;
+				    background-color: $grey;
+					&.red{ background-color: $red; }
+					&.green { background-color: $green; }
+					&:hover{ opacity: 1; }
+				}
+			}
+			.bages{
+			    position: absolute; top: .8rem; right: 1.5rem;
+				@include transition;
+				color: $green;
+			}
+			&--button {
+				.button.bg-red{ opacity: .2; @include transition; height: 0; }
+				.link{ font-size: 13px; text-align: right; }
+			}
+			&:hover{
+				.button.bg-red{ opacity: 1; height: 26px; }
+			}
+		}
+	}
+	.forms{
+		@include transition;
+		&--input{
+		    background: #fff;
+            border-radius: 3px;
+            box-shadow: $shadow;
+			input{
+				border: none;
+                background: transparent;
+			    width: 100%;
+			    padding: 0;
+			    outline: none;
+				font: 400 #{$font-size-base}/1.65 $font-base;
+			}
+			.spinner-grow{
+				background-color: $blue;
+				width: 24px; height: 24px;
+			}
+		}
+		.items--item--button {
+			.button.bg-red{ opacity: 1; height: 32px; line-height: 32px; }
+		}
+	}
+}

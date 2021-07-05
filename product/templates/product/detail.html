@@ -1,0 +1,7 @@
+{% extends 'layout/main.html' %}
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">{{ item.title }}</h1>
+    <a href="{% url 'product-delete' item.pk %}">Удалить</a>
+{% endblock %}
