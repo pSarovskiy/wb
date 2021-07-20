@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-8%kd(*dr9vzezafv7lj&)jqrfhiftub%xph1k7=8d#wxrs*)vu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '192.168.0.102']
 
 # Application definition
 
@@ -53,7 +53,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
-    'http://192.168.0.104:8080'
+    'http://192.168.0.102'
 ]
 
 ROOT_URLCONF = 'wildberries.urls'
@@ -80,10 +80,19 @@ WSGI_APPLICATION = 'wildberries.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/etc/mysql/wb.cnf',
+        },
     }
 }
 

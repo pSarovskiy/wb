@@ -16,9 +16,11 @@ from urllib3.exceptions import MaxRetryError
 
 from product.models import Product, Price
 
+from selenium.webdriver.chrome.options import Options
 
 class Wosminog:
-    options = webdriver.ChromeOptions()
+    # options = webdriver.ChromeOptions()
+    options = Options()
     chrome_driver = None
     url_list = []
     result = []
@@ -28,22 +30,27 @@ class Wosminog:
 
     def __init__(self):
         self.options.add_argument('--no-sandbox')
-        self.options.add_argument("start-maximized")
         self.options.add_argument('--headless')
+        self.options.add_argument("--disable-gpu")
+        self.options.add_argument('--disable-infobars')
+        self.options.add_argument('--disable-extensions')
+        self.options.add_argument('--disable-software-rasterizer')
+        self.options.add_argument("--disable-dev-shm-usage")
+        self.options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        self.options.add_experimental_option('useAutomationExtension', False)
+        self.options.add_argument('--user-data-dir=~/.config/google-chrome')
+
         self.options.add_argument(
             "user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/84.0.4147.125 Safari/537.36")
-        self.options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        self.options.add_experimental_option('useAutomationExtension', False)
-        self.options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-        self.chrome_driver = webdriver.Chrome(options=self.options,
-                                              executable_path=r"D:\Myprojects\wildberries\Chromedriver\chromedriver.exe")
-        self.chrome_driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-            "source": """ Object.defineProperty(navigator, 'webdriver', { get: () => undefined }) """
-        })
+       
+        # self.options.add_argument("--remote-debugging-port=9222")
+
+        self.chrome_driver = webdriver.Chrome(executable_path="/usr/local/share/chromedriver", options=self.options)
 
     def go(self):
         try:
+            self.result = []
             if not self.url_list:
                 return False
             for i, url in enumerate(self.url_list):
